@@ -52,7 +52,10 @@ def call(body) {
          emailext body: '''
          $PROJECT_NAME - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}:
          Check console output at ${BUILD_URL} to view the results.
-         change author: ${CHANGE_AUTHOR}
+         change author: ${env.CHANGE_AUTHOR}
+         change title: ${env.CHANGE_TITLE}
+         current build: ${currentBuild}
+         current build causes: ${currentBuild.getBuildCauses}
           ''', 
          recipientProviders: [developers(), requestor()], subject: 'test subject', to: 'test@jenkins'
       }
