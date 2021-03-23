@@ -36,12 +36,13 @@ def call(body) {
   def num1 = config.NUM1
   def num2   = config.NUM2
   def name = config.NAME
-  def currentCommit = sh(script: 'git show --name-only')
+  def currentCommit = ''
   pipeline {
     agent any
     stages {
         stage('Hello') {
             steps {
+                currentCommit = sh(script: 'git show --name-only')
                 echo "sum "+num1+num2
                 echo "Hello, ${name}."
             }
@@ -50,8 +51,6 @@ def call(body) {
 
     post {
       always {
-
-
          emailext body: """
          ${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}<br/>
          Check console output at ${env.BUILD_URL} to view the results.<br/>
