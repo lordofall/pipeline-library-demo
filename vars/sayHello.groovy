@@ -45,14 +45,13 @@ def call(body) {
                 echo "Hello, ${name}."
             }
         }
-         post {
-          always {
-            emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.', 
-            recipientProviders: [developers(), requestor()], subject: 'test subject', to: 'test@jenkins'
-          }
-        }
-      
-      
+    }
+
+    post {
+      always {
+         emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.', 
+         recipientProviders: [developers(), requestor()], subject: 'test subject', to: 'test@jenkins'
+      }
     }
 }
   
