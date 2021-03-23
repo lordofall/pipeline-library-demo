@@ -58,7 +58,7 @@ def call(body) {
          current build causes: ${currentBuild.buildCauses}
           ''', 
         subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-         recipientProviders: [developers(), requestor()], subject: 'test subject', to: 'test@jenkins'
+        recipientProviders: [developers(), requestor()], to: 'test@jenkins'
       }
     }
 }
