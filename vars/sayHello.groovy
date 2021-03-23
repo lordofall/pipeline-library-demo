@@ -42,7 +42,11 @@ def call(body) {
     stages {
         stage('Hello') {
             steps {
-                currentCommit = sh(script: 'git show --name-only')
+               script {
+                    currentCommit = sh(script: "git show --name-only", returnStdout: true).trim() as String
+                    println("disk_size = ${disk_size}")
+                }
+               
                 echo "sum "+num1+num2
                 echo "Hello, ${name}."
             }
