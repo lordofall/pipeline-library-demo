@@ -36,7 +36,7 @@ def call(body) {
   def num1 = config.NUM1
   def num2   = config.NUM2
   def name = config.NAME
-  def currentCommit = $(git show --name-only)
+  def currentCommit = sh(script: 'git show --name-only')
   pipeline {
     agent any
     stages {
