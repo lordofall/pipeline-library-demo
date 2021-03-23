@@ -49,7 +49,9 @@ def call(body) {
 
     post {
       always {
-         emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.', 
+         emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:\n 
+         Check console output at $BUILD_URL to view the results.\n
+         change author: $CHANGE_AUTHOR \n', 
          recipientProviders: [developers(), requestor()], subject: 'test subject', to: 'test@jenkins'
       }
     }
