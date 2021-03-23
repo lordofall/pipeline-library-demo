@@ -50,8 +50,8 @@ def call(body) {
     post {
       always {
          emailext body: """
-         ${env.JOB_NAME} - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}<br/>
-         Check console output at ${BUILD_URL} to view the results.<br/>
+         ${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}<br/>
+         Check console output at ${env.BUILD_URL} to view the results.<br/>
          change author: ${env.CHANGE_AUTHOR}<br/>
          change title: ${env.CHANGE_TITLE}<br/>
          Job name: ${env.JOB_NAME}
