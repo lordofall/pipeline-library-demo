@@ -50,13 +50,14 @@ def call(body) {
     post {
       always {
          emailext body: '''
-         $PROJECT_NAME - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}:
+         $PROJECT_NAME - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}:<br/>
          Check console output at ${BUILD_URL} to view the results.
          change author: ${env.CHANGE_AUTHOR}
          change title: ${env.CHANGE_TITLE}
-         current build: ${currentBuild}
-         current build causes: ${currentBuild.getBuildCauses}
+         current build result: ${currentBuild.currentResult}
+         current build causes: ${currentBuild.buildCauses}
           ''', 
+        subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
          recipientProviders: [developers(), requestor()], subject: 'test subject', to: 'test@jenkins'
       }
     }
